@@ -5,4 +5,4 @@ Editing Stuff here
 
 New Stuff
 
-Since we coding, might as well learn version control.
+Since we coding, might as well learn version control ~~from experience on IOT TOT~~.
