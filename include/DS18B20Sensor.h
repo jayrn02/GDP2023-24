@@ -3,6 +3,6 @@
 
 // Function prototypes
 void setupDS18B20Sensor();
-float readTemperatureFromDS18B20();
+float readTemperatureFromDS18B20(); // Return temperature from sensor
 
 #endif

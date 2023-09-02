@@ -14,7 +14,7 @@
  All above must be included in any redistribution.
  ****************************************************/
 
-/*
+
 #include <EEPROM.h>
 #include "GravityTDS.h"
 
@@ -212,5 +212,3 @@ void GravityTDS::ecCalibration(byte mode)
         break;
     }
 }
-
-*/
