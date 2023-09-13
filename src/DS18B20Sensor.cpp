@@ -5,7 +5,7 @@
 #include <DallasTemperature.h>
 
 // Pins (Digital)
-#define ONE_WIRE_BUS 2  // To be changes later
+#define ONE_WIRE_BUS 4  // To be changes later
 
 // Acccess Library, I honestly dk whats this
 OneWire oneWire(ONE_WIRE_BUS);
