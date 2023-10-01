@@ -12,18 +12,27 @@
  /***********Notice and Trouble shooting***************
  1. This code is tested on Arduino Uno and Leonardo with Arduino IDE 1.0.5 r2 and 1.8.2.
  2. More details, please click this link: <https://www.dfrobot.com/wiki/index.php/Gravity:_Analog_TDS_Sensor_/_Meter_For_Arduino_SKU:_SEN0244>
+
+
+
+
+ I modified the sampling rate, its abit confusing but il just leave it as it is. This modification should allow the sample to be read much faster but most likely have errors (less average)
  ****************************************************/
+
+
+
 
 #include <Arduino.h>
 #include "TDSSensor.h"
 
 #define TdsSensorPin A1
 #define VREF 5.0      // analog reference voltage(Volt) of the ADC
-#define SCOUNT  30           // sum of sample point
+#define SCOUNT  4           // sum of sample point
 int analogBuffer[SCOUNT];    // store the analog value in the array, read from ADC
 int analogBufferTemp[SCOUNT];
 int analogBufferIndex = 0,copyIndex = 0;
 float averageVoltage = 0,tdsValue = 0,temperature = 25;
+
 
 
 void setupTDSSensor() {
@@ -58,7 +67,7 @@ int getMedianNum(int bArray[], int iFilterLen)
 float readTDSSensor()  {
   static unsigned long analogSampleTimepoint = millis();
 
-  if(millis()-analogSampleTimepoint > 40U)  {    //every 40 milliseconds,read the analog value from the ADC
+  if(millis()-analogSampleTimepoint > 400U)  {    //every 40 milliseconds,read the analog value from the ADC
     analogSampleTimepoint = millis();
     analogBuffer[analogBufferIndex] = analogRead(TdsSensorPin);    //read the analog value and store into the buffer
     analogBufferIndex++;
@@ -69,7 +78,7 @@ float readTDSSensor()  {
 
    static unsigned long printTimepoint = millis();
 
-  if(millis()-printTimepoint > 800U) {
+  if(millis()-printTimepoint > 1600U) {
     printTimepoint = millis();
 
     for(copyIndex=0;copyIndex<SCOUNT;copyIndex++)
