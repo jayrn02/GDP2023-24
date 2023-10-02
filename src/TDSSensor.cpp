@@ -31,7 +31,7 @@
 int analogBuffer[SCOUNT];    // store the analog value in the array, read from ADC
 int analogBufferTemp[SCOUNT];
 int analogBufferIndex = 0,copyIndex = 0;
-float averageVoltage = 0,tdsValue = 0,temperature = 25;
+float averageVoltage = 0,tdsValue = 0,temperature = 25;   // Should use the temperature here later
 
 
 

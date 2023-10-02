@@ -2,6 +2,7 @@
 #include "DS18B20Sensor.h"
 #include "TDSSensor.h"
 #include "TurbiditySensor.h"
+#include "pHSensor.h"
 
 void setup() {
   // Initialize the built-in LED pin as an output
@@ -14,9 +15,16 @@ void setup() {
 }
 
 void loop() {
+  //  pH
+  float phValue = readPHSensor();
+
+  Serial.print("pH Value = ");
+  Serial.println(phValue);
+
 
   //  Temp
   float temp = readTemperatureFromDS18B20();
+  
   Serial.print("Temperature: ");
   Serial.print(temp);
   Serial.println(" °C"); // Print temperature with a newline character
@@ -35,7 +43,7 @@ void loop() {
   Serial.print("Turbidity: ");
   Serial.println(turbidity);
 
-  Serial.println("--------------------");
 
+  Serial.println("--------------------\n");
   delay(2000); 
 }
