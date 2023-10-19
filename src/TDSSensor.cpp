@@ -31,7 +31,7 @@
 int analogBuffer[SCOUNT];    // store the analog value in the array, read from ADC
 int analogBufferTemp[SCOUNT];
 int analogBufferIndex = 0,copyIndex = 0;
-float averageVoltage = 0,tdsValue = 0,temperature = 25;   // Should use the temperature here later
+float averageVoltage = 0,tdsValue = 0;   // Should use the temperature here later
 
 
 
@@ -64,7 +64,7 @@ int getMedianNum(int bArray[], int iFilterLen)
       return bTemp;
 }
 
-float readTDSSensor()  {
+float readTDSSensor(float temperature)  {
   static unsigned long analogSampleTimepoint = millis();
 
   if(millis()-analogSampleTimepoint > 400U)  {    //every 40 milliseconds,read the analog value from the ADC

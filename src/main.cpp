@@ -3,6 +3,7 @@
 #include "TDSSensor.h"
 #include "TurbiditySensor.h"
 #include "pHSensor.h"
+#include "DHT22Sensor.h"
 
 void setup() {
   // Initialize the built-in LED pin as an output
@@ -12,6 +13,7 @@ void setup() {
   setupDS18B20Sensor();
   setupTDSSensor();
   setupTurbiditySensor();
+  setupDHT22();
 }
 
 void loop() {
@@ -23,15 +25,15 @@ void loop() {
 
 
   //  Temp
-  float temp = readTemperatureFromDS18B20();
+  float temperature = readTemperatureFromDS18B20();
   
   Serial.print("Temperature: ");
-  Serial.print(temp);
+  Serial.print(temperature);
   Serial.println(" °C"); // Print temperature with a newline character
   
 
   //  TDS
-  float tds = readTDSSensor();
+  float tds = readTDSSensor(temperature);
 
   Serial.print("TDS: ");
   Serial.println(tds);
@@ -42,6 +44,19 @@ void loop() {
 
   Serial.print("Turbidity: ");
   Serial.println(turbidity);
+
+
+  // DHT22
+  float roomTemp = readDHT22Temperature();
+  float humidity = readDHT22Humidity();
+
+
+  Serial.print("Temperature: ");
+  Serial.println(roomTemp);
+
+  Serial.print("Humidity: ");
+  Serial.println(humidity);
+  
 
 
   Serial.println("--------------------\n");

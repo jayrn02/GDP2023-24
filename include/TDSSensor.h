@@ -3,6 +3,6 @@
 
 // Function prototypes
 void setupTDSSensor();
-float readTDSSensor();
+float readTDSSensor(float temp);
 
 #endif
