@@ -21,6 +21,4 @@ float readDHT22Humidity() {
   float DHT22_Humidity = DHT22_Sensor.readHumidity();
   
   return DHT22_Humidity;
- 
-  delay(1000);
 }

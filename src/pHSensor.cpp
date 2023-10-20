@@ -40,7 +40,7 @@ float readPHSensor()   {
         avgValue+=buf[i];
 
     float pHVol=(float)avgValue*5.0/1024/6;
-    float phValue = -5.70 * pHVol + 21.34;
+    float phValue = -5.70 * pHVol + 21.34 + 3.72;
 
     return phValue;
 }
