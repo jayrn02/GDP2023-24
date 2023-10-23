@@ -1,5 +1,5 @@
 # GDP2023
-## Group Design Project for Year 3 for IOT Rainwater
+## Personal Group Design Project for Year 3 for IOT Rainwater
 
 **lib** - Contains Library, ignore this file. Install Library directly in platformio and it will handle the rest  
 **src** - Contains the functions for sensor and component as well as the main execution file  
