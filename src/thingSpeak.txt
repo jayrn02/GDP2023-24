@@ -1,0 +1,21 @@
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+
+const char* ssid = "YourSSID";       // Your Wi-Fi network name
+const char* password = "YourPassword";   // Your Wi-Fi network password
+const String apiKey = "YourThingSpeakAPIKey";   // Your ThingSpeak API Key
+const char* server = "api.thingspeak.com";
+
+
+
+void setupthingSpeak()  {
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+}
+}

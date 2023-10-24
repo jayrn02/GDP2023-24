@@ -4,16 +4,19 @@
 #include "TurbiditySensor.h"
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
+#include "LCD.h"
 
 void setup() {
   // Initialize the built-in LED pin as an output
   pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(9600);
   
+
   setupDS18B20Sensor();
   setupTDSSensor();
   setupTurbiditySensor();
   setupDHT22();
+  setupLCD();
 }
 
 void loop() {
@@ -59,5 +62,8 @@ void loop() {
   
 
   Serial.println("--------------------\n");
+  char* var = "";
+  dtostrf(temperature, 4, 1, var);
+  displayLCD(var);
   delay(2000); 
 }
