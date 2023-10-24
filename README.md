@@ -1,5 +1,5 @@
 # GDP2023
-## Group Design Project for Year 3
+## Personal Group Design Project for Year 3 for IOT Rainwater
 
 **lib** - Contains Library, ignore this file. Install Library directly in platformio and it will handle the rest  
 **src** - Contains the functions for sensor and component as well as the main execution file  
@@ -8,6 +8,5 @@
 **.gitignore** - Tells git to ignore whatever is in here to be pushed, just dont touch it unless you know what ya doing  
 **the rest~~** - Just ignore them  
 
-Since we coding, might as well learn version control ~~from experience on IOT TOT~~.
 
-Dont forget to save your file, Git might not track unsaved file (Ctrl + S)
+Dont forget to save your file, Visual Code does not update files in realtime and Git does not track unsaved file (Ctrl + S)
