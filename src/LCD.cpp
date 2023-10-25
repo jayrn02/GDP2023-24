@@ -2,23 +2,22 @@
 #include <LiquidCrystal_I2C.h>
 #include <Arduino.h>
 
-LiquidCrystal_I2C lcd(0x27, 2, 1); // Set the LCD address and pins
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Set the LCD address and pins
 
 // Your variables to display
 
-
-
 void setupLCD() {
-
-    lcd.begin(16, 2); // Initialize the LCD
+    lcd.init();
     lcd.backlight();
     lcd.setCursor(0, 0);
-    lcd.print("IOT Rainwater Sensor");
+    lcd.print("IOT Rainwater");
+    lcd.setCursor(0, 1);
+    lcd.print("Sensor :D");
     delay(5000);
     lcd.clear();
 }
 
-void displayLCD(char* var) {
+void displayLCD(float var) {
     lcd.setCursor(0, 0);
     lcd.print("Variable: ");
     lcd.print(var);

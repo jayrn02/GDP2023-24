@@ -2,5 +2,5 @@
 #define LCD_H
 
     void setupLCD();
-    void displayLCD(char* var);
+    void displayLCD(float var);
 #endif

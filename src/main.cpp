@@ -5,53 +5,57 @@
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
 #include "LCD.h"
+#include "OLED.h"
+
 
 void setup() {
   // Initialize the built-in LED pin as an output
-  pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(9600);
   
 
   setupDS18B20Sensor();
   setupTDSSensor();
-  setupTurbiditySensor();
+  //setupTurbiditySensor();
   setupDHT22();
   setupLCD();
+  setupOLED();
 }
 
 void loop() {
-  //  pH
+  
+  // Gather Data First
   float phValue = readPHSensor();
+  float temperature = readTemperatureFromDS18B20();
+  float tds = readTDSSensor(temperature);
+  float roomTemp = readDHT22Temperature();
+  float humidity = readDHT22Humidity();
 
+  //  pH
   Serial.print("pH Value = ");
   Serial.println(phValue);
 
-
-  //  Temp
-  float temperature = readTemperatureFromDS18B20();
-  
+  //  Temp (water)
   Serial.print("Temperature: ");
   Serial.print(temperature);
   Serial.println(" °C"); // Print temperature with a newline character
   
 
   //  TDS
-  float tds = readTDSSensor(temperature);
+  
 
   Serial.print("TDS: ");
   Serial.println(tds);
 
-
+/*
   //  Turbidity
   float turbidity = readTurbidity();
 
   Serial.print("Turbidity: ");
   Serial.println(turbidity);
 
-
+*/
   // DHT22
-  float roomTemp = readDHT22Temperature();
-  float humidity = readDHT22Humidity();
+
 
 
   Serial.print("Temperature: ");
@@ -62,8 +66,10 @@ void loop() {
   
 
   Serial.println("--------------------\n");
-  char* var = "";
-  dtostrf(temperature, 4, 1, var);
-  displayLCD(var);
-  delay(2000); 
+  //displayLCD(temperature);
+  
+  displayOLED(phValue);
+
+  delay(2000);
+  
 }
