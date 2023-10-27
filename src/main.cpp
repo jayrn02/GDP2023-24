@@ -4,72 +4,78 @@
 #include "TurbiditySensor.h"
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
-#include "LCD.h"
 #include "OLED.h"
+#include "myThingSpeak.h"
+#include "webserver.h"
+//#include "LCD.h"
 
+int thingSpeakLoop = 0;
 
 void setup() {
   // Initialize the built-in LED pin as an output
-  Serial.begin(9600);
   
-
+  setupOLED();
+  bootDisplay();
   setupDS18B20Sensor();
   setupTDSSensor();
-  //setupTurbiditySensor();
   setupDHT22();
-  setupLCD();
-  setupOLED();
+  //setupLCD()
+  setupWeb();
+  Serial.begin(19200);
 }
 
 void loop() {
-  
-  // Gather Data First
+
+  // Gather Data
   float phValue = readPHSensor();
   float temperature = readTemperatureFromDS18B20();
   float tds = readTDSSensor(temperature);
   float roomTemp = readDHT22Temperature();
   float humidity = readDHT22Humidity();
-
-  //  pH
-  Serial.print("pH Value = ");
-  Serial.println(phValue);
-
-  //  Temp (water)
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.println(" °C"); // Print temperature with a newline character
-  
-
-  //  TDS
-  
-
-  Serial.print("TDS: ");
-  Serial.println(tds);
-
-/*
-  //  Turbidity
   float turbidity = readTurbidity();
 
-  Serial.print("Turbidity: ");
-  Serial.println(turbidity);
+  //Serial display output
+  {
+    //  pH
+    Serial.print("pH Value = ");
+    Serial.println(phValue);
 
-*/
-  // DHT22
+    //  Temp (water)
+    Serial.print("Temperature: ");
+    Serial.print(temperature);
+    Serial.println(" °C"); // Print temperature with a newline character
 
+    //  TDS
+    Serial.print("TDS: ");
+    Serial.println(tds);
 
+    //  Turbidity
+    Serial.print("Turbidity: ");
+    Serial.println(turbidity);
 
-  Serial.print("Temperature: ");
-  Serial.println(roomTemp);
+    // DHT22
+    Serial.print("Temperature: ");
+    Serial.println(roomTemp);
 
-  Serial.print("Humidity: ");
-  Serial.println(humidity);
+    Serial.print("Humidity: ");
+    Serial.println(humidity);
+
+    Serial.println("--------------------\n");
+  }
   
-
-  Serial.println("--------------------\n");
+  // Physical interface output
+  displayOLED(phValue, temperature, turbidity, tds, roomTemp, humidity);
   //displayLCD(temperature);
   
-  displayOLED(phValue);
+    sendWeb(phValue, temperature, turbidity, tds, roomTemp, humidity);
+
+  // send data every 8 loop
+  thingSpeakLoop += 1;
+  if (thingSpeakLoop == 8)  {
+    sendData(phValue, temperature, turbidity, tds, roomTemp, humidity);
+    thingSpeakLoop = 0;
+  }
+  
 
   delay(2000);
-  
 }

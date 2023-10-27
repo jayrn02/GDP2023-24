@@ -2,8 +2,7 @@
 #define OLED_H
 
 void setupOLED();
+void displayOLED(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity);
 
-
-void displayOLED(float pH);
-
+void bootDisplay();
 #endif
