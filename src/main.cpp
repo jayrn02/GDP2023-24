@@ -1,12 +1,19 @@
 #include <Arduino.h>
+
+//  Library Sensor
 #include "DS18B20Sensor.h"
 #include "TDSSensor.h"
 #include "TurbiditySensor.h"
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
+
+// Library Others?
+#include "webserver.h"
 #include "OLED.h"
 #include "myThingSpeak.h"
-#include "webserver.h"
+
+//#include "ArduinoGraphics.h"
+//#include "Arduino_LED_Matrix.h"
 //#include "LCD.h"
 
 int thingSpeakLoop = 0;
@@ -21,11 +28,10 @@ void setup() {
   setupDHT22();
   //setupLCD()
   setupWeb();
-  Serial.begin(19200);
+  Serial.begin(9600);
 }
 
 void loop() {
-
   // Gather Data
   float phValue = readPHSensor();
   float temperature = readTemperatureFromDS18B20();
@@ -36,6 +42,8 @@ void loop() {
 
   //Serial display output
   {
+    Serial.println("--------------------\n");
+
     //  pH
     Serial.print("pH Value = ");
     Serial.println(phValue);
@@ -59,10 +67,7 @@ void loop() {
 
     Serial.print("Humidity: ");
     Serial.println(humidity);
-
-    Serial.println("--------------------\n");
   }
-  
   // Physical interface output
   displayOLED(phValue, temperature, turbidity, tds, roomTemp, humidity);
   //displayLCD(temperature);
