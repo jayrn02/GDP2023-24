@@ -1,0 +1,56 @@
+Date : 2023-10-30 16:01:34
+Directory : c:\Users\Lenovo\Documents\GitHub\GDP2023-24
+Total : 26 files,  593 codes, 145 comments, 167 blanks, all 905 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         24 |        571 |        136 |        161 |        868 |
+| Ini      |          1 |         13 |          9 |          2 |         24 |
+| Markdown |          1 |          9 |          0 |          4 |         13 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                     | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                        |         26 |        593 |        145 |        167 |        905 |
+| . (Files)                                                                                |          2 |         22 |          9 |          6 |         37 |
+| calibration                                                                              |          3 |         61 |         46 |         16 |        123 |
+| include                                                                                  |         11 |        119 |          6 |         24 |        149 |
+| src                                                                                      |         10 |        391 |         84 |        121 |        596 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                 | language | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\README.md                                    | Markdown |          9 |          0 |          4 |         13 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\calibration\CODING_PH_SENSOR_CALIBRATION.ino | C++      |         15 |          0 |          4 |         19 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\calibration\GravityTDSExample.ino            | C++      |         22 |         23 |          7 |         52 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\calibration\TDSInit.ino                      | C++      |         24 |         23 |          5 |         52 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\DHT22Sensor.h                        | C++      |          6 |          1 |          2 |          9 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\DS18B20Sensor.h                      | C++      |          5 |          1 |          2 |          8 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\LCD.h                                | C++      |          5 |          0 |          1 |          6 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\OLED.h                               | C++      |          6 |          0 |          2 |          8 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\TDSSensor.h                          | C++      |          5 |          1 |          2 |          8 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\TurbiditySensor.h                    | C++      |          4 |          0 |          4 |          8 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\arduino_secret.h                     | C++      |          4 |          1 |          1 |          6 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\image.h                              | C++      |         69 |          0 |          4 |         73 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\myThingSpeak.h                       | C++      |          5 |          0 |          2 |          7 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\pHSensor.h                           | C++      |          4 |          1 |          2 |          7 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\include\webserver.h                          | C++      |          6 |          1 |          2 |          9 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\platformio.ini                               | Ini      |         13 |          9 |          2 |         24 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\DHT22Sensor.cpp                          | C++      |         16 |          0 |          8 |         24 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\DS18B20Sensor.cpp                        | C++      |         14 |          3 |          4 |         21 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\LCD.cpp                                  | C++      |         21 |          1 |          6 |         28 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\OLED.cpp                                 | C++      |         52 |          6 |         21 |         79 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\TDSSensor.cpp                            | C++      |         57 |         20 |         17 |         94 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\TurbiditySensor.cpp                      | C++      |          7 |          0 |          2 |          9 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\main.cpp                                 | C++      |         51 |         17 |         18 |         86 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\myThingSpeak.cpp                         | C++      |         25 |          2 |          7 |         34 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\pHSensor.cpp                             | C++      |         27 |         12 |          8 |         47 |
+| c:\Users\Lenovo\Documents\GitHub\GDP2023-24\src\webserver.cpp                            | C++      |        121 |         23 |         30 |        174 |
+| Total                                                                                    |          |        593 |        145 |        167 |        905 |
++------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
