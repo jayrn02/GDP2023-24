@@ -7,7 +7,7 @@
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
 
-// Library Others?
+// Library Others
 #include "webserver.h"
 #include "OLED.h"
 #include "myThingSpeak.h"
@@ -19,8 +19,6 @@
 int thingSpeakLoop = 0;
 
 void setup() {
-  // Initialize the built-in LED pin as an output
-  
   setupOLED();
   bootDisplay();
   setupDS18B20Sensor();
@@ -33,14 +31,15 @@ void setup() {
 
 void loop() {
   // Gather Data
-  float phValue = readPHSensor();
   float temperature = readTemperatureFromDS18B20();
+  float phValue = readPHSensor();
+  float turbidity = readTurbidity();
   float tds = readTDSSensor(temperature);
+  
   float roomTemp = readDHT22Temperature();
   float humidity = readDHT22Humidity();
-  float turbidity = readTurbidity();
 
-  //Serial display output
+  //Serial display output for Debugging
   {
     Serial.println("--------------------\n");
 
@@ -51,7 +50,7 @@ void loop() {
     //  Temp (water)
     Serial.print("Temperature: ");
     Serial.print(temperature);
-    Serial.println(" °C"); // Print temperature with a newline character
+    Serial.println(" °C");
 
     //  TDS
     Serial.print("TDS: ");
@@ -80,7 +79,5 @@ void loop() {
     sendData(phValue, temperature, turbidity, tds, roomTemp, humidity);
     thingSpeakLoop = 0;
   }
-  
-
   delay(2000);
 }

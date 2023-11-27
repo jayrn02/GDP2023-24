@@ -2,8 +2,8 @@
 #include "WiFiS3.h"
 #include "arduino_secret.h"
 
-char ssid[] = SECRET_SSID;        // your network SSID (name)
-char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = SECRET_SSID;
+char pass[] = SECRET_PASS;
 
 float data[6] = {0, 0, 0, 0, 0, 0};
 
@@ -88,12 +88,8 @@ void sendWeb(float phValue, float temperature, float turbidity, float tds, float
                     client.println("</head>");
 
                     client.println("<body>");
-
-                    // Create a header sensor data
                     
                     client.println("<img src='https://cdn.enfsolar.com/ID/logo/5f59c39a063ed.png?v=1'>");
-
-
                     client.println("<h1>Water Sensor Data</h1>");
 
                     client.println("<table border='1' cellpadding='5'>");
@@ -132,9 +128,11 @@ void sendWeb(float phValue, float temperature, float turbidity, float tds, float
 
                     client.println("</table>");  // Close the table
 
+
                     client.println("<h1>Room Sensor Data</h1>");
 
                     client.println("<table border='1' cellpadding='5'>");
+
                     // DHT22
                     client.println("<tr>");
                     client.println("<th>Temperature</th>");
@@ -164,8 +162,7 @@ void sendWeb(float phValue, float temperature, float turbidity, float tds, float
                 }
             }
         }
-        // Give the web browser time to receive the data
-        delay(1);
+        delay(1);   // Give the web browser time to receive the data
         // Close the connection:
         client.stop();
         Serial.println("client disconnected");

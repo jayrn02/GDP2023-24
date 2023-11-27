@@ -16,7 +16,6 @@ float readDHT22Temperature() {
   return DHT22_TempC;
 }
 
-
 float readDHT22Humidity() {
   float DHT22_Humidity = DHT22_Sensor.readHumidity();
   

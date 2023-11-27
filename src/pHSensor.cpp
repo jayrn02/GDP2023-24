@@ -1,15 +1,3 @@
-/* 
-
-CODE
-The code consists of taking 10 samples of the analog input A0, sort them, and discard the highest and the lowest 
-and calculate the average of the six remaining samples converting this value to a voltage in the variable pHVol, 
-then using the equation we have calculated with the reference values of pH become pHVol to pHValue 
-and it is sent on the serial port to view the article in the serial monitor.
-
-MORE DETAILS, LINK:
-https://arduinotech.dk/shop/ph-sensor-module-bnc/
-*/
-
 #include <Arduino.h>
 
 const int analogInPin = A0;
