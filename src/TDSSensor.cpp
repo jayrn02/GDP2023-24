@@ -8,19 +8,7 @@
  GNU Lesser General Public License.
  See <http://www.gnu.org/licenses/> for details.
  All above must be included in any redistribution
-
- /***********Notice and Trouble shooting***************
- 1. This code is tested on Arduino Uno and Leonardo with Arduino IDE 1.0.5 r2 and 1.8.2.
- 2. More details, please click this link: <https://www.dfrobot.com/wiki/index.php/Gravity:_Analog_TDS_Sensor_/_Meter_For_Arduino_SKU:_SEN0244>
-
-
-
-
- I modified the sampling rate, its abit confusing but il just leave it as it is. This modification should allow the sample to be read much faster but most likely have errors (less average)
- ****************************************************/
-
-
-
+ /*
 
 #include <Arduino.h>
 #include "TDSSensor.h"
