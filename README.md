@@ -1,4 +1,4 @@
-# GDP2023
-## Personal Group Design Project for Year 3 for IOT Rainwater
+# GDP2023-24
+## Group Design Project for Year 3 | IOT Rainwater
 
-Uses Arduino Uno Rev4 Wi-Fi for now. WiFiS3 Library
+Uses Arduino Uno Rev4 Wi-Fi. WiFiS3 Library
