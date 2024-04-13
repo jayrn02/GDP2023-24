@@ -6,6 +6,7 @@
 #include "TurbiditySensor.h"
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
+#include "waterLevel.h"
 
 // Library Others
 #include "webserver.h"
@@ -27,6 +28,8 @@ void setup() {
   //setupLCD()
   setupWeb();
   Serial.begin(9600);
+
+
 }
 
 void loop() {
@@ -38,6 +41,15 @@ void loop() {
   
   float roomTemp = readDHT22Temperature();
   float humidity = readDHT22Humidity();
+
+  int checkWaterLevel(); // Declare the function checkWaterLevel()
+
+  int waterLevel = checkWaterLevel();
+  
+
+  // Check if water has reached the sensor level
+  
+
 
   //Serial display output for Debugging
   {
@@ -66,17 +78,24 @@ void loop() {
 
     Serial.print("Humidity: ");
     Serial.println(humidity);
+
+    Serial.print("Water Level: ");
+    Serial.println(waterLevel);
+
   }
+
+
+
   // Physical interface output
   displayOLED(phValue, temperature, turbidity, tds, roomTemp, humidity);
   //displayLCD(temperature);
   
-    sendWeb(phValue, temperature, turbidity, tds, roomTemp, humidity);
+    sendWeb(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel);
 
   // send data every 8 loop
   thingSpeakLoop += 1;
   if (thingSpeakLoop == 8)  {
-    sendData(phValue, temperature, turbidity, tds, roomTemp, humidity);
+    sendData(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel);
     thingSpeakLoop = 0;
   }
   delay(2000);

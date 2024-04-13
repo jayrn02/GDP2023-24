@@ -4,6 +4,6 @@
 // Function prototypes
 void setupWeb();
 void printWifiStatus();
-void sendWeb(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity);
+void sendWeb(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity, int waterLevel);
 
 #endif

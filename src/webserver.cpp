@@ -5,7 +5,7 @@
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASS;
 
-float data[6] = {0, 0, 0, 0, 0, 0};
+float data[6] = {0, 0, 0, 0, 0, 0}; // Do i actually need this? Why is this here??
 
 int status = WL_IDLE_STATUS;
 
@@ -16,7 +16,7 @@ void printWifiStatus() {
     Serial.print("SSID: ");
     Serial.println(WiFi.SSID());
 
-    // Print your board's IP address:
+    // Print your board's IP address used to access from web:
     IPAddress ip = WiFi.localIP();
     Serial.print("IP Address: ");
     Serial.println(ip);
@@ -63,7 +63,7 @@ void setupWeb() {
 }
 
 
-void sendWeb(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity) {
+void sendWeb(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity, int waterLevel) {
     // Listen for incoming clients
     WiFiClient client = server.available();
     if (client) {
@@ -125,6 +125,15 @@ void sendWeb(float phValue, float temperature, float turbidity, float tds, float
                     client.println(turbidity);
                     client.println("</td>");
                     client.println("</tr>");
+
+                    // Water Level
+                    client.println("<tr>");
+                    client.println("<th>Water Level</th>");
+                    client.println("<td>");
+                    client.println(waterLevel);
+                    client.println("</td>");
+                    client.println("</tr>");
+
 
                     client.println("</table>");  // Close the table
 
