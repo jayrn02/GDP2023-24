@@ -47,11 +47,11 @@ void setupWeb() {
         Serial.println("Please upgrade the firmware");
     }
 
-    // Attempt to connect to the WiFi network:
+    // Attempt to connect to the WiFi network: (Will continue to check indefinately, might need to change this to exit if failed to connect after a certain amount of time)
     while (status != WL_CONNECTED) {
         Serial.print("Attempting to connect to SSID: ");
         Serial.println(ssid);
-        // Connect to WPA/WPA2 network. Change this line if using an open or WEP network:
+        // Connect to WPA/WPA2 network.
         status = WiFi.begin(ssid, pass);
 
         // Wait 10 seconds for connection:
@@ -63,7 +63,7 @@ void setupWeb() {
 }
 
 
-void sendWeb(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity, int waterLevel) {
+void sendWeb(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity, int waterLevel, float carbonDioxide) {
     // Listen for incoming clients
     WiFiClient client = server.available();
     if (client) {
@@ -138,7 +138,7 @@ void sendWeb(float phValue, float temperature, float turbidity, float tds, float
                     client.println("</table>");  // Close the table
 
 
-                    client.println("<h1>Room Sensor Data</h1>");
+                    client.println("<h1>Tank Sensor Data</h1>");
 
                     client.println("<table border='1' cellpadding='5'>");
 
@@ -157,6 +157,15 @@ void sendWeb(float phValue, float temperature, float turbidity, float tds, float
                     client.println("</td>");
                     client.println("</tr>");
                     client.println("</table>");  // Close the table
+
+                    client.println("<tr>");
+                    client.println("<th>Carbon Dioxide</th>");
+                    client.println("<td>");
+                    client.println(carbonDioxide);
+                    client.println("</td>");
+                    client.println("</tr>");
+                    client.println("</table>");  // Close the table
+
 
                     client.println("</body>");
                     client.println("</html>");

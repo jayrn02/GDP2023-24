@@ -16,7 +16,7 @@ void setupThingSpeak() {
   }
 }
 
-void sendData(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity, int waterLevel) {
+void sendData(float phValue, float temperature, float turbidity, float tds, float roomTemp, float humidity, int waterLevel, float carbonDioxide) {
 
   // Initialize ThingSpeak
   ThingSpeak.begin(client);
@@ -30,6 +30,7 @@ void sendData(float phValue, float temperature, float turbidity, float tds, floa
   ThingSpeak.setField(5, roomTemp);
   ThingSpeak.setField(6, humidity);
   ThingSpeak.setField(7, waterLevel);
+  ThingSpeak.setField(8, carbonDioxide);
 
   int x = ThingSpeak.writeFields(channelID, writeAPIKey);
 }

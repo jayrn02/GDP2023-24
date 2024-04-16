@@ -7,6 +7,7 @@
 #include "pHSensor.h"
 #include "DHT22Sensor.h"
 #include "waterLevel.h"
+#include "MHZ-Z19C.h"
 
 // Library Others
 #include "webserver.h"
@@ -27,6 +28,7 @@ void setup() {
   setupDHT22();
   //setupLCD()
   setupWeb();
+  setupCO2();
   Serial.begin(9600);
 
 
@@ -46,6 +48,7 @@ void loop() {
 
   int waterLevel = checkWaterLevel();
   
+  float carbonDioxide = getCO2();
 
   // Check if water has reached the sensor level
   
@@ -82,6 +85,9 @@ void loop() {
     Serial.print("Water Level: ");
     Serial.println(waterLevel);
 
+    Serial.print("Carbon Dioxide: ");
+    Serial.println(carbonDioxide);
+
   }
 
 
@@ -90,12 +96,12 @@ void loop() {
   displayOLED(phValue, temperature, turbidity, tds, roomTemp, humidity);
   //displayLCD(temperature);
   
-    sendWeb(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel);
+    sendWeb(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel, carbonDioxide);
 
   // send data every 8 loop
   thingSpeakLoop += 1;
   if (thingSpeakLoop == 8)  {
-    sendData(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel);
+    sendData(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel, carbonDioxide);
     thingSpeakLoop = 0;
   }
   delay(2000);

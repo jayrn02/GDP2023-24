@@ -1,14 +1,11 @@
-#include <MHZ.h>
+#include <SoftwareSerial.h>
 #include <Arduino.h>
-#include <SoftwareSerial.h>
-
-#include <SoftwareSerial.h>
 
 // RX and TX pins connected to the sensor's TX and RX respectively
 SoftwareSerial co2Serial(10, 11); // RX, TX
 
 void setupCO2() {
-  // Start the serial communication with the computer and the sensor
+  Serial.begin(9600);
   co2Serial.begin(9600);
   Serial.println("MH-Z19C CO2 sensor test");
 }
@@ -19,29 +16,21 @@ float getCO2() {
   co2Serial.write(cmd, 9);
 
   // Wait for the sensor to respond
-  delay(1000);
+  delay(100);
 
   // Read response from the sensor
-  if (co2Serial.available()) {
+  if (co2Serial.available() >= 9) {
     unsigned char response[9];
     co2Serial.readBytes(response, 9);
     
     // Calculate CO2 concentration from the response
     int high = response[2];
     int low = response[3];
-    int co2ppm = high * 256 + low;
+    float co2ppm = high * 256 + low;
     
-    // Print the CO2 concentration
-    Serial.print("CO2 Concentration: ");
-    Serial.print(co2ppm);
-    Serial.println(" ppm");
-
-
     return co2ppm;
   }
 
-  // Wait a bit before reading again
-  delay(2000);
+  // Return a default value or error code if no data is received
+  return -1;  // Return -1 to indicate an error in reading data
 }
-
-
