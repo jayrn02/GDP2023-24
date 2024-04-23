@@ -13,8 +13,12 @@
 #include "OLED.h"
 #include "myThingSpeak.h"
 
+
+#include "Arduino_LED_Matrix.h"
+#include "frames.h"   
+
+ArduinoLEDMatrix matrix;
 //#include "ArduinoGraphics.h"
-//#include "Arduino_LED_Matrix.h"
 //#include "LCD.h"
 
 int thingSpeakLoop = 0;
@@ -28,6 +32,8 @@ void setup() {
   //setupLCD()
   setupWeb();
   Serial.begin(9600);
+  pinMode(8, INPUT_PULLUP);  // Set the float switch pin as input with internal pull-up resistor
+  
 
 
 }
@@ -85,6 +91,11 @@ void loop() {
   }
 
 
+  if (waterLevel == 1) {
+    matrix.loadFrame(chip);
+  } else {
+    matrix.loadFrame(fullOn);
+  }
 
   // Physical interface output
   displayOLED(phValue, temperature, turbidity, tds, roomTemp, humidity);
