@@ -22,6 +22,13 @@ ArduinoLEDMatrix matrix;
 //#include "LCD.h"
 
 int thingSpeakLoop = 0;
+float accTemperature = 0;
+float accPhValue = 0;
+float accTurbidity = 0;
+float accTds = 0;
+float accRoomTemp = 0;
+float accHumidity = 0;
+int accWaterLevel = 0;
 
 void setup() {
   setupOLED();
@@ -90,12 +97,13 @@ void loop() {
 
   }
 
-
-  if (waterLevel == 1) {
-    matrix.loadFrame(chip);
-  } else {
-    matrix.loadFrame(fullOn);
-  }
+  accTemperature += temperature;
+  accPhValue += phValue;
+  accTurbidity += turbidity;
+  accTds += tds;
+  accRoomTemp += roomTemp;
+  accHumidity += humidity;
+  accWaterLevel += waterLevel;
 
   // Physical interface output
   displayOLED(phValue, temperature, turbidity, tds, roomTemp, humidity);
@@ -105,8 +113,27 @@ void loop() {
 
   // send data every 8 loop
   thingSpeakLoop += 1;
-  if (thingSpeakLoop == 8)  {
-    sendData(phValue, temperature, turbidity, tds, roomTemp, humidity, waterLevel);
+  if (thingSpeakLoop == 8) {
+    // Calculate averages
+    float avgTemperature = accTemperature / 8;
+    float avgPhValue = accPhValue / 8;
+    float avgTurbidity = accTurbidity / 8;
+    float avgTds = accTds / 8;
+    float avgRoomTemp = accRoomTemp / 8;
+    float avgHumidity = accHumidity / 8;
+    float avgWaterLevel = (float)accWaterLevel / 8;  // Cast to float to calculate average
+
+    // Send average data
+    sendData(avgPhValue, avgTemperature, avgTurbidity, avgTds, avgRoomTemp, avgHumidity, avgWaterLevel);
+
+    // Reset accumulators and loop counter
+    accTemperature = 0;
+    accPhValue = 0;
+    accTurbidity = 0;
+    accTds = 0;
+    accRoomTemp = 0;
+    accHumidity = 0;
+    accWaterLevel = 0;
     thingSpeakLoop = 0;
   }
   delay(2000);
