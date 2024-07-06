@@ -17,7 +17,6 @@
 #include "Arduino_LED_Matrix.h"
 #include "frames.h"   
 
-ArduinoLEDMatrix matrix;
 //#include "ArduinoGraphics.h"
 //#include "LCD.h"
 
@@ -40,29 +39,22 @@ void setup() {
   setupWeb();
   Serial.begin(9600);
   pinMode(8, INPUT_PULLUP);  // Set the float switch pin as input with internal pull-up resistor
-  
-
 
 }
 
 void loop() {
   // Gather Data
   float temperature = readTemperatureFromDS18B20();
-  float phValue = readPHSensor();
+  float phValue = readPHSensor(temperature);
   float turbidity = readTurbidity();
   float tds = readTDSSensor(temperature);
   
   float roomTemp = readDHT22Temperature();
   float humidity = readDHT22Humidity();
 
-  int checkWaterLevel(); // Declare the function checkWaterLevel()
-
+  int checkWaterLevel()
   int waterLevel = checkWaterLevel();
   
-
-  // Check if water has reached the sensor level
-  
-
 
   //Serial display output for Debugging
   {

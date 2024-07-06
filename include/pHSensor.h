@@ -2,6 +2,6 @@
 #define pHSensor_H
 
 // Function prototypes
-float readPHSensor();
+float readPHSensor(float temperature);
 
 #endif

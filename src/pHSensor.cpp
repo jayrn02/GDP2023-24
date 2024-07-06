@@ -6,21 +6,20 @@ unsigned long int avgValue;
 float b;
 int buf[10], temp;
 
-// Obtained voltage and pH referecne values
+// Obtained voltage and pH reference values
 float V_686 = 3.2690; 
 float V_401 = 3.6572; 
 
 float pH1 = 6.86;
 float pH2 = 4.01;
 
-// Calculate the slope gradiend
+// Calculate the slope gradient
 float slope = (pH2 - pH1) / (V_401 - V_686);
 
 // Calculate the intercept
 float intercept = pH1 - (slope * V_686);
 
-
-float readPHSensor() {
+float readPHSensor(float temperature) {
     for(int i = 0; i < 10; i++) {
         buf[i] = analogRead(analogInPin);
         delay(10);
@@ -43,6 +42,9 @@ float readPHSensor() {
     float pHVol = (float)avgValue * 5.0 / 1024 / 6; // Convert ADC value to voltage
     float phValue = slope * pHVol + intercept; // Calculate pH using the calibrated slope and intercept
 
+    // Adjust pH based on temperature: pH changes by -0.03 units per degree Celsius deviation from 25°C
+    float temperatureCorrection = (temperature - 25) * -0.03;
+    phValue += temperatureCorrection;
+
     return phValue;
 }
-
